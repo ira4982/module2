@@ -1,6 +1,7 @@
+/* Base styles */
 body {
   font-family: Arial, sans-serif;
-  background-color: #fdd; /* Light pink background as in your screenshot */
+  background-color: #fdd;
   margin: 0;
   padding: 0;
   text-align: center;
@@ -13,22 +14,23 @@ h1 {
 
 .menu-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
   margin: 40px auto;
   padding: 0 20px;
-  max-width: 1000px;
-  flex-wrap: wrap;
+  max-width: 1200px;
 }
 
 .menu-item {
   background-color: #ccc;
   border: 1px solid #333;
-  width: 300px;
   padding: 30px 15px 15px 15px;
-  position: relative;
   box-sizing: border-box;
   text-align: left;
+  position: relative;
+  flex: 1 1 100%; /* Mobile default: full width */
+  min-width: 250px;
 }
 
 .menu-label {
@@ -52,4 +54,21 @@ h1 {
 
 .sushi {
   background-color: #e6d398;
+}
+/* Tablet view: 2 on top, 1 full width below */
+@media (min-width: 768px) and (max-width: 991px) {
+  .menu-item {
+    flex: 1 1 calc(50% - 10px); /* Two items per row with gap */
+  }
+
+  .menu-item:nth-child(3) {
+    flex: 1 1 100%; /* Third item takes full width */
+  }
+}
+
+/* Desktop view: 3 equal columns */
+@media (min-width: 992px) {
+  .menu-item {
+    flex: 1 1 calc(33.333% - 13.33px); /* Three per row with gap */
+  }
 }
